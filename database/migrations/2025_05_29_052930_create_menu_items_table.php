@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('menu_category_id')->constrained()->onDelete('cascade');
-        $table->string('name');
+        $table->string('name', 100);
+        $table->foreignId('menu_category_id')->constrained();
         $table->decimal('price', 8, 2);
+        $table->decimal('cost_price', 8, 2)->nullable();
         $table->text('description')->nullable();
-        $table->string('image')->nullable();
+        $table->boolean('is_available')->default(true);
+        $table->boolean('is_active')->default(true); // To indicate if the item is active
         $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ class Order extends Model
 
     public function tables()
     {
-        return $this->belongsToMany(Table::class, 'table_id');
+        return $this->belongsTo(Table::class, 'table_id');
     }
 
     public function orderItems()
@@ -20,5 +20,10 @@ class Order extends Model
     public function payments()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

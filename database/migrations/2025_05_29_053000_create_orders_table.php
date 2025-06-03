@@ -12,13 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('table_id')->constrained()->onDelete('cascade');
-        $table->foreignId('user_id')->constrained()->onDelete('cascade'); // waiter
-        $table->decimal('total_price', 10, 2)->default(0);
-        $table->enum('status', ['pending', 'preparing', 'served', 'paid'])->default('pending');
-        $table->timestamp('ordered_at')->useCurrent();
-        $table->timestamps();
+            $table->id();
+            $table->string('order_number')->unique();
+            $table->string('customer_name')->nullable();
+            $table->string('customer_phone')->nullable();
+            $table->decimal('total_amount', 10, 2);
+            $table->enum('payment_method', ['Cash', 'Card', 'Mobile Banking']);
+            $table->enum('order_type', ['dine_in', 'takeaway', 'delivery'])->default('dine_in');
+            $table->text('delivery_address')->nullable();
+            $table->decimal('delivery_charge', 8, 2)->default(0);
+            $table->enum('order_status', ['pending', 'preparing', 'ready', 'delivered', 'cancelled'])->default('pending');
+            $table->text('notes')->nullable();
+            $table->date('order_date');
+            
+            $table->index('order_date');
+            $table->index('order_status');
+            $table->timestamps();
         });
     }
 

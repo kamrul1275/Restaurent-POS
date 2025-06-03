@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\api\DailySalesController;
+use App\Http\Controllers\api\ExpenseController;
 use App\Http\Controllers\api\MenuCategoryController;
 use App\Http\Controllers\api\MenuItemController;
 use App\Http\Controllers\api\OrderController;
@@ -29,7 +31,7 @@ Route::delete('/delete_menu_categories/{id}', [MenuCategoryController::class, 'd
 Route::get('/menu_items', [MenuItemController::class, 'allMenuItems'])->name('all_menu_items');
 Route::get('/menu_items/{id}', [MenuItemController::class, 'singleMenuItem'])->name('single_menu_item');
 Route::post('/create_menu_items', [MenuItemController::class, 'createMenuItem'])->name('create_menu_item');
-Route::put('/update_menu_items/{id}', [MenuItemController::class, 'updateMenuItem'])->name('update_menu_item');
+Route::post('/update_menu_items/{id}', [MenuItemController::class, 'updateMenuItem'])->name('update_menu_item');
 Route::delete('/delete_menu_items/{id}', [MenuItemController::class, 'deleteMenuItem'])->name('delete_menu_item');
 
 
@@ -59,6 +61,36 @@ Route::get('/order_items/{id}', [OrderItemController::class, 'singleOrderItem'])
 Route::post('/create_order_items', [OrderItemController::class, 'createOrderItem'])->name('create_order_item');
 Route::put('/update_order_items/{id}', [OrderItemController::class, 'updateOrderItem'])->name('update_order_item');
 Route::delete('/delete_order_items/{id}', [OrderItemController::class, 'deleteOrderItem'])->name('delete_order_item');
+
+
+//expense
+Route::get('/expenses', [ExpenseController::class, 'allExpenses'])->name('all_expenses');
+Route::get('/expenses/{id}', [ExpenseController::class, 'singleExpense'])->name('single_expense');
+Route::post('/create_expenses', [ExpenseController::class, 'createExpense'])->name('create_expense');
+Route::put('/update_expenses/{id}', [ExpenseController::class, 'updateExpense'])->name('update_expense');
+Route::delete('/delete_expenses/{id}', [ExpenseController::class, 'deleteExpense'])->name('delete_expense');
+
+
+// daily sales
+
+Route::get('/daily_sales', [DailySalesController::class, 'allDailySales'])->name('all_daily_sales');
+Route::get('/daily_sales/{id}', [DailySalesController::class, 'singleDailySale'])->name('single_daily_sale');
+Route::post('/create_daily_sales', [DailySalesController::class, 'createDailySale'])->name('create_daily_sale');
+Route::put('/update_daily_sales/{id}', [DailySalesController::class, 'updateDailySale'])->name('update_daily_sale');
+Route::delete('/delete_daily_sales/{id}', [DailySalesController::class, 'deleteDailySale'])->name('delete_daily_sale');
+// Route::get('/daily_sales/report', [DailySalesController::class, 'dailySalesReport'])->name('generate_daily_sales_report');
+
+// Route::get('/daily_sales/report', [DailySalesController::class, 'dailySalesSummary'])->name('generate_daily_sales_report');
+// Route::get('/daily_sales/report', [DailySalesController::class, 'dailySalesTrends'])->name('generate_daily_sales_report');
+// Route::get('/daily_sales/report', [DailySalesController::class, 'dailySalesByCategory'])->name('generate_daily_sales_report');
+// Route::get('/daily_sales/report', [DailySalesController::class, 'dailySalesByItem'])->name('generate_daily_sales_report');
+
+// Route::get('/daily_sales/report', [DailySalesController::class, 'dailySalesByPaymentMethod'])->name('generate_daily_sales_report');
+
+
+
+
+
 
 
 

@@ -13,6 +13,9 @@ class MenuCategoryController extends Controller
         $menuCategories = MenuCategory::all();
         return response()->json($menuCategories);
     }//end method
+
+
+
     public function singleMenuCategory($id)
     {
         $menuCategory = MenuCategory::find($id);
@@ -22,21 +25,36 @@ class MenuCategoryController extends Controller
             return response()->json(['message' => 'Menu Category not found'], 404);
         }
     }//end method
+
+
+
     public function createMenuCategory(Request $request)
     {
-        $menuCategory = MenuCategory::create($request->all());
+        $menuCategory =new MenuCategory();
+        $menuCategory->name = $request->name;
+        $menuCategory->save();
         return response()->json($menuCategory, 201);
     }//end method
+
+
+
+
     public function updateMenuCategory(Request $request, $id)
     {
         $menuCategory = MenuCategory::find($id);
-        if ($menuCategory) {
-            $menuCategory->update($request->all());
-            return response()->json($menuCategory);
-        } else {
+
+        if (!$menuCategory) {
             return response()->json(['message' => 'Menu Category not found'], 404);
         }
+
+        $menuCategory->name = $request->input('name');
+        //dd($menuCategory->name);
+        $menuCategory->save();
+        return response()->json($menuCategory, 200);
     }//end method
+
+
+
     public function deleteMenuCategory($id)
     {
         $menuCategory = \App\Models\MenuCategory::find($id);

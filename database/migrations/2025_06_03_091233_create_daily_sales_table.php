@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu_categories', function (Blueprint $table) {
+        Schema::create('daily_sales', function (Blueprint $table) {
         $table->id();
-        $table->string('name');
-        $table->text('description')->nullable();
-        $table->string('image')->nullable(); // Optional: to store an image URL or path
-        $table->boolean('is_active')->default(true); // To indicate if the category is active
+        $table->date('sale_date')->unique();  
+        $table->decimal('total_sales', 10, 2);
+        $table->integer('total_orders');
         $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menu_categories');
+        Schema::dropIfExists('daily_sales');
     }
 };
