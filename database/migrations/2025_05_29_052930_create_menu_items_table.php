@@ -18,6 +18,7 @@ return new class extends Migration
         $table->decimal('price', 8, 2);
         $table->decimal('cost_price', 8, 2)->nullable();
         $table->text('description')->nullable();
+        $table->string('image')->nullable();
         $table->boolean('is_available')->default(true);
         $table->boolean('is_active')->default(true); // To indicate if the item is active
         $table->timestamps();

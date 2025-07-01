@@ -10,6 +10,8 @@ class MenuCategoryController extends Controller
 {
     public function allMenuCategory()
     {
+
+        // dd('Menu Category');
         $menuCategories = MenuCategory::all();
         return response()->json($menuCategories);
     }//end method

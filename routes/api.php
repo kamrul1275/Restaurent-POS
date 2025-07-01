@@ -52,6 +52,9 @@ Route::post('/create_orders', [OrderController::class, 'createOrder'])->name('cr
 Route::put('/update_orders/{id}', [OrderController::class, 'updateOrder'])->name('update_order');
 Route::delete('/delete_orders/{id}', [OrderController::class, 'deleteOrder'])->name('delete_order');
 
+Route::get('/invoice/{id}', [OrderController::class, 'showInvoice'])->name('invoice.show');
+
+
 
 
 

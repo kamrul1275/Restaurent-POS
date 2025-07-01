@@ -41,11 +41,11 @@ class MenuItemController extends Controller
     {
 
         $validator = validator($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:menu_items,name',
             'price' => 'required|numeric|min:0',
             'menu_category_id' => 'required|exists:menu_categories,id',
             'description' => 'nullable|string|max:1000',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // optional validation
+            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048', // optional validation
         ]);
 
         if ($validator->fails()) {

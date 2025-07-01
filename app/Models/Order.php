@@ -12,7 +12,7 @@ class Order extends Model
         return $this->belongsTo(Table::class, 'table_id');
     }
 
-    public function orderItems()
+    public function orderitems()
     {
         return $this->hasMany(OrderItem::class);
     }
