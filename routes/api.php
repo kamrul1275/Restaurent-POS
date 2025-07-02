@@ -7,6 +7,7 @@ use App\Http\Controllers\api\MenuItemController;
 use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\OrderItemController;
 use App\Http\Controllers\api\PaymentController;
+use App\Http\Controllers\api\ReportController;
 use App\Http\Controllers\api\ReservationController;
 use App\Http\Controllers\api\TableController;
 use Illuminate\Http\Request;
@@ -74,7 +75,17 @@ Route::put('/update_expenses/{id}', [ExpenseController::class, 'updateExpense'])
 Route::delete('/delete_expenses/{id}', [ExpenseController::class, 'deleteExpense'])->name('delete_expense');
 
 
+
+
+// Report Sales
+
+Route::get('/report_overview',[ReportController::class,'reportOverview']);
+Route::get('/today_sales',[ReportController::class,'todaySales']);
+Route::get('/monthly_Sales',[ReportController::class,'monthlySalesLast12Months']);
+
 // daily sales
+
+
 
 Route::get('/daily_sales', [DailySalesController::class, 'allDailySales'])->name('all_daily_sales');
 Route::get('/daily_sales/{id}', [DailySalesController::class, 'singleDailySale'])->name('single_daily_sale');
