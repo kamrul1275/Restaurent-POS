@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\DailySalesController;
 use App\Http\Controllers\api\ExpenseController;
 use App\Http\Controllers\api\MenuCategoryController;
@@ -16,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+// Route::post('/logout',[AuthController::class,'logout']);
+
 
 
 //menu category
